@@ -2,13 +2,17 @@
 // and a string (name)
 var wrapLog = function (callback, name) {
 // returns a function that does the same thing as callback
-   return function (){
+   return function (...args){
     // can refer to the variables
     // passed into function using the arguments[i]
     // can use Template literals to print outputs
-    var args = `(${arguments[0]},${arguments[1]})`;
-    var output = callback(arguments[0],arguments[1]);
-    console.log(`${name}${args} => ${output}`);
+    // var args = `(${arguments[0]},${arguments[1]})`;
+    // var output = callback(arguments[0],arguments[1]);
+    // console.log(`${name}${args} => ${output}`);
+    var result = callback(...args);
+    var argsAsString = [...args].join(",");;
+    console.log(`${name}(${argsAsString}) => ${result}`)
+    // console.log(`${name}${args} => ${output}`);
   }
 };
 
